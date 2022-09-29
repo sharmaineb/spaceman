@@ -24,9 +24,14 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns: 
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-    # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-    pass
-
+    # TODO: Loop through the letters in the secret_word and check if a letter is not in letters_Guessed
+    for letters in secret_word: 
+        if letters == letters_guessed:
+            return True
+    else:
+        return False
+            
+                    
 def get_guessed_word(secret_word, letters_guessed):
     '''
     A function that is used to get a string showing the letters guessed so far in the secret word and underscores for letters that have not been guessed yet.
@@ -38,8 +43,12 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
 
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
-
-    pass
+    for letters in secret_word:
+        if len(letters) == letters_guessed:
+            print("Letters That Have Been Guessed Correctly: ")
+        if len(letters) != letters_guessed:
+            print("_")
+    
 
 
 def is_guess_in_word(guess, secret_word):
@@ -52,11 +61,11 @@ def is_guess_in_word(guess, secret_word):
         bool: True if the guess is in the secret_word, False otherwise
     '''
     #TODO: check if the letter guess is in the secret word
+    while True:
+        if guess in secret_word:
+            print("Guessed Letter is in Secret Word!")
 
-    pass
-
-
-
+    
 
 def spaceman(secret_word):
     '''
