@@ -1,3 +1,4 @@
+from itertools import count
 import random
 
 def load_word():
@@ -29,12 +30,12 @@ def is_word_guessed(secret_word, letters_guessed):
     correct_letters = 0
     for letter in secret_word:
         if letter in (letters_guessed):
-            print(secret_word[counter], end=" ")
-        correct_letters += 1
-    else:
-        print(" ", end=" ")
-    counter += 1
-    return correct_letters
+            correct_letters += 1
+            return False
+        else:
+            counter += 1
+            return True
+    
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -73,13 +74,11 @@ def is_guess_in_word(guess, secret_word):
         return False
 
 
-
-
 def spaceman(secret_word):
     '''
     A function that controls the game of spaceman. Will start spaceman in the command line.
     Args:
-      secret_word (string): the secret word to guess.
+    secret_word (string): the secret word to guess.
     '''
     letters_guessed = []
     chances = 7
@@ -90,6 +89,7 @@ def spaceman(secret_word):
     playing = True
     while playing:
         guess = input("Enter a Letter: ")
+        print("--------------------------------------------------")
         if is_guess_in_word(guess, secret_word):
             print("You guessed a correct letter!")
             letters_guessed.append(guess)
@@ -99,9 +99,11 @@ def spaceman(secret_word):
             print(f"{guess} is incorrect. You have {chances} remaining.")
             letters_guessed.append(guess)
             print(f"Your List of Used Letters: {letters_guessed}")
+        print(get_guessed_word(secret_word, letters_guessed))
+
         if is_word_guessed(secret_word, letters_guessed):
             if chances == 0:
-                print(f"I'm sorry, but you've ran out of chances. The correct word was {secret_word}.upper()")
+                print(f"I'm sorry, but you've ran out of chances. The correct word was {secret_word.upper()}")
                 playing = False
                 break
 
