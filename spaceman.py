@@ -1,5 +1,4 @@
-from itertools import count
-import random
+import random 
 
 def load_word():
     '''
@@ -8,12 +7,12 @@ def load_word():
     Returns: 
            string: The secret word to be used in the spaceman guessing game
     '''
-    f = open('words.txt', 'r')
-    words_list = f.readlines()
-    f.close()
+    f = open('words.txt', 'r') # name of file we want to open
+    words_list = f.readlines() # takes each line from the words.txt file and stores it in a list
+    f.close() # remember to close the open file
     
-    words_list = words_list[0].split(' ') #comment this line out if you use a words.txt file with each word on a new line
-    secret_word = random.choice(words_list)
+    words_list = words_list[0].split(' ') # comment this line out if you use a words.txt file with each word on a new line
+    secret_word = random.choice(words_list) # returns a random word from list
     return secret_word
 
 def is_word_guessed(secret_word, letters_guessed):
@@ -26,15 +25,15 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-    counter = 0
-    correct_letters = 0
-    for letter in secret_word:
+    counter = 0 # set variables to 0 so it can be filled with data
+    correct_letters = 0 # set variables to 0 so it can be filled with data
+    for letter in secret_word: # loop 
         if letter in (letters_guessed):
             correct_letters += 1
             return False
         else:
             counter += 1
-            return True
+            return True # return bool
     
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -53,8 +52,8 @@ def get_guessed_word(secret_word, letters_guessed):
 
     for letter in secret_word:
         if letter in letters_guessed:
-            correctly_guessed += letter
-        else: correctly_guessed += " _ "
+            correctly_guessed += letter # letters that are correct will replace blanks
+        else: correctly_guessed += " _ " # underscore for letters that haven't been guessed yet.
     return correctly_guessed
 
 def is_guess_in_word(guess, secret_word):
@@ -68,8 +67,8 @@ def is_guess_in_word(guess, secret_word):
     '''
     #TODO: check if the letter guess is in the secret word
 
-    if guess in secret_word:
-        return True
+    if guess in secret_word: # check if the letter guess is in the secret word
+        return True # return bool
     else:
         return False
 
@@ -80,13 +79,13 @@ def spaceman(secret_word):
     Args:
     secret_word (string): the secret word to guess.
     '''
-    letters_guessed = []
-    chances = 7
+    letters_guessed = [] # list for letters player has guessed
+    chances = 7 # when uses all 7, game breaks
     print("Let's Play Spaceman!")
     print("You will be given only 7 incorrect guesses.")
     print("Please only enter one letter at a time.")
 
-    playing = True
+    playing = True # game loop
     while playing:
         guess = input("Enter a Letter: ")
         print("--------------------------------------------------")
@@ -95,17 +94,17 @@ def spaceman(secret_word):
             letters_guessed.append(guess)
             print(f"Your List of Used Letters: {letters_guessed}")
         else:
-            chances -= 1
-            print(f"{guess} is incorrect. You have {chances} remaining.")
+            chances -= 1 # if player guesses a wrong letter, the number of times to get answer wrong goes down by one
+            print(f"{guess} is incorrect. You have {chances} guesses remaining.") # show player how many wrong guesses left when they input an incorrect letter
             letters_guessed.append(guess)
-            print(f"Your List of Used Letters: {letters_guessed}")
+            print(f"Your List of Used Letters: {letters_guessed}") # shows player the letters they've used
         print(get_guessed_word(secret_word, letters_guessed))
 
-        if is_word_guessed(secret_word, letters_guessed):
+        if is_word_guessed(secret_word, letters_guessed): # when player runs out of wrong guesses 
             if chances == 0:
-                print(f"I'm sorry, but you've ran out of chances. The correct word was {secret_word.upper()}")
+                print(f"I'm sorry, but you've ran out of guesses. The correct word was {secret_word.upper()}") # end game and show the word
                 playing = False
-                break
+                break # end game
 
 #These function calls that will start the game
 secret_word = load_word()
