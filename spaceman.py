@@ -25,6 +25,13 @@ def is_word_guessed(secret_word, letters_guessed):
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
+    """checks if the letters the user inputs is in the secret word that is a random word from word list.
+       parameters:
+       secret_word (string): the random word in 'words.txt' that the user is trying to guess
+       letters_guessed (list of strings): list of letters the user has guessed so far.
+       returns:
+       True is the letters guessed are in the secret word and False if they aren't."""
+
     counter = 0 # set variables to 0 so it can be filled with data
     correct_letters = 0 # set variables to 0 so it can be filled with data
     for letter in secret_word: # loop 
@@ -48,7 +55,14 @@ def get_guessed_word(secret_word, letters_guessed):
 
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
 
-    correctly_guessed = " "
+    """function that shows the letters the user has inputed and displaying underscores for thr letters that have not been guessed yet.
+       parameters:
+       secret_word(string): the random word in 'words.txt' that the user is trying to guess.
+       letters_guessed (list of strings): list of letters the user has guessed so far.
+       returns:
+       letters and underscores as strings. if the user guesses the letter correctly the underscore will be replaced with the correct letter."""
+    
+    correctly_guessed = " " # letters the user has correctly inputed
 
     for letter in secret_word:
         if letter in letters_guessed:
@@ -67,6 +81,13 @@ def is_guess_in_word(guess, secret_word):
     '''
     #TODO: check if the letter guess is in the secret word
 
+    """function that checks if the letter the user inputed is in the secret word which is a random word from 'words.txt'.
+       parameters:
+       guess (string): the letter the user has guessed in the current round.
+       secret_word (string): the random word in 'words.txt' that the user is trying to guess.
+       returns:
+       True if the letter the user has guessed is in the secret_word and False otherwise."""
+
     if guess in secret_word: # check if the letter guess is in the secret word
         return True # return bool
     else:
@@ -79,6 +100,11 @@ def spaceman(secret_word):
     Args:
     secret_word (string): the secret word to guess.
     '''
+    
+    """the function that controls the game - spaceman.
+       parameters:
+       secret_word (string) the random word in 'words.txt' that the user is trying to guess."""
+    
     letters_guessed = [] # list for letters player has guessed
     chances = 7 # when uses all 7, game breaks
     print("Let's Play Spaceman!")
@@ -113,13 +139,7 @@ spaceman(secret_word)
 
 
 
-
-
-
-
-
-
-
+# used cli-games as a reference for game loop
 
 
 
